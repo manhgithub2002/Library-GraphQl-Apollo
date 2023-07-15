@@ -3,6 +3,8 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema/schema.js";
 import * as mongoose from "mongoose";
 import { resolvers } from "./resolver/resolver.js";
+//Load db methods
+import { mongoDataMethods } from "../data/db.js";
 // Connect to MongoDB
 const connectDB = async () => {
   try {
@@ -31,6 +33,7 @@ const server = new ApolloServer({
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
+  context: async () => ({ mongoDataMethods }),
   listen: { port: 4000 },
 });
 console.log(`🚀  Server ready at: ${url}`);

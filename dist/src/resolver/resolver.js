@@ -6,13 +6,13 @@ export const resolvers = {
             return await mongoDataMethods.getAllBooks();
         },
         book: async (parent, { id }, { mongoDataMethods }) => {
-            await mongoDataMethods.getBook(id);
+            return await mongoDataMethods.getBook(id);
         },
         authors: async (parent, args, { mongoDataMethods }) => {
             return await mongoDataMethods.getAllAuthors();
         },
         author: async (parent, { id }, { mongoDataMethods }) => {
-            await mongoDataMethods.getAuthor(id);
+            return await mongoDataMethods.getAuthor(id);
         },
     },
     Book: {
